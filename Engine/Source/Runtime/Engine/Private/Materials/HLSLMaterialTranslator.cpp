@@ -1369,7 +1369,11 @@ void FHLSLMaterialTranslator::GetMaterialEnvironment(EShaderPlatform InPlatform,
 				OutEnvironment.SetDefine(TEXT("THIN_TRANSLUCENT_USE_DUAL_BLEND"), TEXT("1"));
 			}
 		}
-
+		if (ShadingModels.HasShadingModel(MSM_CustomModel1))
+		{
+			OutEnvironment.SetDefine(TEXT("MATERIAL_SHADINGMODEL_CUSTOM_MODEL1"), TEXT("1"));
+			NumSetMaterials++;
+		}
 		if(ShadingModels.HasShadingModel(MSM_SingleLayerWater) && 
 			(IsSwitchPlatform(Platform) || IsVulkanMobileSM5Platform(Platform) || IsPS4Platform(Platform) || Platform == SP_XBOXONE_D3D12))
 		{

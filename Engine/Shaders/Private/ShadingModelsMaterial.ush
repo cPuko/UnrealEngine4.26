@@ -138,6 +138,14 @@ void SetGBufferForShadingModel(
 		GBuffer.IndirectIrradiance *= 1 - GBuffer.CustomData.a;
 	}
 #endif
+//Start Choi Change
+#if MATERIAL_SHADINGMODEL_CUSTOM_MODEL1
+	else if(ShadingModel == SHADINGMODELID_CUSTOM_MODEL1)
+	{
+		GBuffer.CustomData.x = saturate( GetMaterialCustomData0(MaterialParameters) );
+	}
+#endif
+//End Change
 #if MATERIAL_SHADINGMODEL_EYE
 	else if (ShadingModel == SHADINGMODELID_EYE)
 	{

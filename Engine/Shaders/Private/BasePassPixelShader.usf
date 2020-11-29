@@ -1029,6 +1029,12 @@ void FPixelShaderInOut_MainPS(
 #endif
 #endif
 
+//Start Choi Change
+#if MATERIAL_SHADINGMODEL_CUSTOM_MODEL1
+	
+#endif
+//End Change
+
 #if POST_PROCESS_SUBSURFACE
 	// SubsurfaceProfile applies the BaseColor in a later pass. Any lighting output in the base pass needs
 	// to separate specular and diffuse lighting in a checkerboard pattern
@@ -1266,7 +1272,10 @@ void FPixelShaderInOut_MainPS(
 #endif
 
 	// Volume lighting for lit translucency
-#if (MATERIAL_SHADINGMODEL_DEFAULT_LIT || MATERIAL_SHADINGMODEL_SUBSURFACE) && (MATERIALBLENDING_TRANSLUCENT || MATERIALBLENDING_ADDITIVE) && !SIMPLE_FORWARD_SHADING && !FORWARD_SHADING
+//Start Choi Change
+#if (MATERIAL_SHADINGMODEL_DEFAULT_LIT || MATERIAL_SHADINGMODEL_SUBSURFACE || MATERIAL_SHADINGMODEL_CUSTOM_MODEL1) && (MATERIALBLENDING_TRANSLUCENT || MATERIALBLENDING_ADDITIVE) 
+//#if (MATERIAL_SHADINGMODEL_DEFAULT_LIT || MATERIAL_SHADINGMODEL_SUBSURFACE) && (MATERIALBLENDING_TRANSLUCENT || MATERIALBLENDING_ADDITIVE) && !SIMPLE_FORWARD_SHADING && !FORWARD_SHADING
+//End Change
 	if (GBuffer.ShadingModelID == SHADINGMODELID_DEFAULT_LIT || GBuffer.ShadingModelID == SHADINGMODELID_SUBSURFACE)
 	{
 		Color += GetTranslucencyVolumeLighting(MaterialParameters, PixelMaterialInputs, BasePassInterpolants, GBuffer, IndirectIrradiance);
